@@ -17,13 +17,18 @@
         var pop = $(this);
         var box = $(this).parent().find(settings['box']);
 
-        box.find(settings['arrow']).css({'left': box.width()/2 - 10});
-        box.find(settings['arrow_border']).css({'left': box.width()/2 - 10});
+        box.find(settings['arrow']).css({'top': box.height()/2 - 10});
+        box.find(settings['arrow_border']).css({'top': box.height()/2 - 10});
 
         if(box.css('display') == 'block'){
           methods.close();
-        } else {
-          box.css({'display': 'block', 'top': 10, 'left': ((pop.parent().width()/2) -box.width()/2 )});
+        } else { 
+          
+          var boxOffset = $(this).parent().offset(); 
+            
+          box.css({'display': 'block', 
+                   'top' : event.pageY - boxOffset.top - box.height()/2 - 22, 
+                   'left': event.pageX - boxOffset.left + 20});
         }
       },
 
